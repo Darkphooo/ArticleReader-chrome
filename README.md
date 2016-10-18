@@ -1,1 +1,1 @@
-# Articlereader-chrome
+# ArticleReader-chrome
