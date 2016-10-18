@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "ArticleReader",
+  "version": "0.1",
+  "description": "A chrome extension for simplified English webpage reading using Shanbay's API",
+  "browser_action": {
+    "default_icon": "images/icon.png",
+    "default_title": "ArticleReader",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "https://api.shanbay.com/bdc/search/",
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.theguardian.com/*"],
+      "js": [
+        "js/jquery-3.1.1.min.js",
+        "js/easy_read.js"
+      ]
+    }
+  ]
+}
