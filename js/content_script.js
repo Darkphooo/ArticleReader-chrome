@@ -67,7 +67,7 @@ $(function() {
       oDiv.style.left = event.clientX+'px';
       oDiv.style.top = event.clientY+$(document).scrollTop()+'px';
       oDiv.style.border = '1px solid #000';
-      oDiv.style.background = '#ffeb3b'
+      oDiv.style.background = '#ffff99'
       oDiv.style.position = 'absolute';
       oDiv.style.width = '200px';
       oDiv.style.height = 'auto';
@@ -76,11 +76,17 @@ $(function() {
       document.body.appendChild(oDiv);
       $.get("https://api.shanbay.com/bdc/search/?word="+selection, function (response, status) {
         if(status == "success"){
-          console.log(response);
           if(response.status_code == 0){
+            console.log(response.data.audio_addresses.us[0]);
             document.getElementById("translation").innerHTML = "<div><p>"+response.data.content+
               "</p><p>中文释义："+response.data.definition+
-              "</p><p>音标:"+response.data.pronunciation
+              "</p><p>音标:"+response.data.pronunciation+"</p>"+
+              "<audio id='audio'></audio>"+
+              "<button id='play'>播放</button>";
+            $("#audio").attr("src",response.data.audio_addresses.us[0]);
+            $("#play").click(function(){
+              $("#audio")[0].play();
+            });
           }else if(response.status_code == 1){
             document.getElementById("translation").innerHTML="<div><p>"+response.msg+"</p></div>"
           }
