@@ -77,7 +77,6 @@ $(function() {
       $.get("https://api.shanbay.com/bdc/search/?word="+selection, function (response, status) {
         if(status == "success"){
           if(response.status_code == 0){
-            console.log(response.data.audio_addresses.us[0]);
             document.getElementById("translation").innerHTML = "<div><p>"+response.data.content+
               "</p><p>中文释义："+response.data.definition+
               "</p><p>音标:"+response.data.pronunciation+"</p>"+
